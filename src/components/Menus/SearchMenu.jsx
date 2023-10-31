@@ -1,12 +1,19 @@
 import { useArrayContext } from "../../context/ArrayContext";
 import KeyInfo from '../KeyInfo'
 
-const SearchMenu = ({showInfo, setShowInfo}) => {
-    const {key, setKey, searchData} = useArrayContext();
+const SearchMenu = ({showInfo, setShowInfo, type}) => {
+    const {key, setKey, searchDataSeq, searchDataBin} = useArrayContext();
 
     const handleSearchKey = () => {
         alert(`Se está buscando la clave ${key}`);
-        searchData();
+        if(type == "sequential") {
+            searchDataSeq();
+        } else if(type == "binary") {
+            searchDataBin();
+        } else {
+            
+        }
+
         setShowInfo(true);
     }
 

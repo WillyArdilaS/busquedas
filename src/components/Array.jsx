@@ -19,6 +19,7 @@ const Array = () => {
         <table id="array" className="bg-white r shadow-md font-title text-center">
             <thead>
                 <tr>
+                    <th className="px-10 py-2  border-x-2"> Posición </th> 
                     <th className="px-10 py-2  border-x-2"> Clave </th> 
                     <th className="px-10 py-2 border-x-2"> Nombre </th> 
                     <th className="px-10 py-2 border-x-2"> Apellido </th> 
@@ -28,6 +29,7 @@ const Array = () => {
             <tbody>
                 {data.map((item, index) => (
                     <tr key={index} className="border-y-2">
+                        <td className="px-10 py-2 border-x-2">{index+1}</td>
                         <td className="px-10 py-2 border-x-2">{item[0]}</td>
                         <td className="px-10 py-2 border-x-2">{item[1]}</td>
                         <td className="px-10 py-2 border-x-2">{item[2]}</td>

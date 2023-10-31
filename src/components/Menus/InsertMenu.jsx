@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { useArrayContext } from "../../context/ArrayContext";
 
-const InsertMenu = () => {
-    const {arrayDigits, key, setKey, name, setName, lastName, setLastName, addData, arrayFull} = useArrayContext();
+const InsertMenu = ({type}) => {
+    const {arrayDigits, key, setKey, name, setName, lastName, setLastName, arrayFull, addData, sortData, addDataHash} = useArrayContext();
+    const [isSorting, setIsSorting] = useState(false);
 
     const handleInsert = () => {
         const keyString = key.toString();
@@ -12,9 +14,25 @@ const InsertMenu = () => {
         } else if (arrayDigits != actualDigits) {
             alert(`Las claves deben tener ${arrayDigits} dígitos`);
         } else {
-            addData();
+            if(type == "sequential" || type == "bynary") {
+                addData();
+    
+                if(type === "binary") {
+                    setIsSorting(true);
+                } 
+            } else {
+                addDataHash()
+            }
         }
     }
+
+    useEffect(() => {
+        if(isSorting) {
+            sortData();
+            setIsSorting(false);
+        }
+    }, [isSorting]);
+
     return (
         <form id="insertForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
             <div id="insertForm-key" className="flex justify-between items-center mb-4">
