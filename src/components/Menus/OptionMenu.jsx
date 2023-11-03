@@ -1,31 +1,45 @@
 import { useArrayContext } from "../../context/ArrayContext";
 
 const OptionMenu = ({setArrayCreated, setInsertOption, setSearchOption, setShowInfo, setCollisionSelected}) => {
-    const {setKey, setName, setLastName, setPosition, setArrayFull} = useArrayContext();
+    const {setArraySize, setArrayDigits, setKey, setName, setLastName, setPosition, setCollision, setArrayFull, setData} = useArrayContext();
 
     const insertKeys = () => {
         setInsertOption(true);
         setSearchOption(false);
         setShowInfo(false);
+
+        setKey("");
+        setName("");
+        setLastName("");
+        setPosition("");
     }
     
     const searchKeys = () => {
         setSearchOption(true);
         setInsertOption(false);
+
+        setKey("");
+        setName("");
+        setLastName("");
+        setPosition("");
     }
     
     const deleteArray = () => {
         setArrayCreated(false);
         setInsertOption(false);
         setSearchOption(false);
-        setSearchOption(false);
+        setShowInfo(false);
         setCollisionSelected(false);
         setArrayFull(false);
 
-        setKey(0);
+        setArraySize(1);
+        setArrayDigits(1);
+        setKey("");
         setName("");
         setLastName("");
         setPosition("");
+        setCollision("");
+        setData([]);
     }
 
     return (

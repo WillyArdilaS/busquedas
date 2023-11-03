@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Intern from "./pages/Intern";
+import Index from "./pages/Index";
 
 function App() {
   return (
@@ -41,6 +42,16 @@ function App() {
             <Route path="cuadrado" element={<Intern type="hashCuadrado" />} />
             <Route path="truncamiento" element={<Intern type="hashTruncamiento" />} />
             <Route path="plegamiento" element={<Intern type="hashPlegamiento" />} />
+          </Route>
+        </Route>
+
+        <Route path="/indices">
+          <Route path="primario" element={<Index opcionIndice="1" />} />
+          <Route path="secundario" element={<Index opcionIndice="2" />} />
+
+          <Route path="multinivel">
+            <Route path="primario" element={<Index opcionIndice="3" />} />
+            <Route path="secundario" element={<Index opcionIndice="4" />} />
           </Route>
         </Route>
       </Routes>

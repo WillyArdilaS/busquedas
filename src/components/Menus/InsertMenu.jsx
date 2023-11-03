@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useArrayContext } from "../../context/ArrayContext";
 
-const InsertMenu = ({type}) => {
+const InsertMenu = ({collisionSelected, type}) => {
     const {arrayDigits, key, setKey, name, setName, lastName, setLastName, arrayFull, addData, sortData, addDataHash} = useArrayContext();
     const [isSorting, setIsSorting] = useState(false);
 
@@ -14,14 +14,26 @@ const InsertMenu = ({type}) => {
         } else if (arrayDigits != actualDigits) {
             alert(`Las claves deben tener ${arrayDigits} dígitos`);
         } else {
-            if(type == "sequential" || type == "bynary") {
+            if(type == "sequential" || type == "binary") {
                 addData();
     
                 if(type === "binary") {
                     setIsSorting(true);
                 } 
             } else {
-                addDataHash()
+                if(collisionSelected == false) {
+                    alert("Debe elegir un método de solución de colisiones antes de ingresar un registro");
+                }  else {
+                    if(type === "hashMod") {
+                        addDataHash(1);
+                    } else if(type === "hashCuadrado") {
+                        addDataHash(2);
+                    } else if(type === "hashTruncamiento") {
+                        addDataHash(3);
+                    } else if(type === "hashPlegamiento") {
+                        addDataHash(4);
+                    } 
+                }
             }
         }
     }
@@ -37,7 +49,7 @@ const InsertMenu = ({type}) => {
         <form id="insertForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
             <div id="insertForm-key" className="flex justify-between items-center mb-4">
                 <label htmlFor="key" className="font-medium"> Clave </label>
-                <input type="number" name="key" id="key" className="w-3/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={0}
+                <input type="number" name="key" id="key" className="w-3/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={0} value={key}
                 onChange={(e) => setKey(e.target.value)} disabled={arrayFull} required/>
             </div>
             

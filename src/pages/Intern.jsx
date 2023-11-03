@@ -16,7 +16,7 @@ const Intern = ({type}) => {
 
   return (
     <ArrayProvider>
-      <main className='flex justify-between w-11/12 mt-12 mx-auto'>
+      <main className='flex justify-between w-11/12 my-12 mx-auto'>
         <section>
           <ArrayMenu arrayCreated={arrayCreated} setArrayCreated={setArrayCreated}/>
 
@@ -28,7 +28,7 @@ const Intern = ({type}) => {
 
         <section>
           <div className={insertOption ? "" : "hidden"}>
-            <InsertMenu type={type}/>
+            <InsertMenu collisionSelected={collisionSelected} type={type}/>
           </div>
           
           {type != "sequential" && type != "binary" ? (

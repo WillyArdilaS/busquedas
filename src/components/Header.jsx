@@ -229,13 +229,39 @@ const Header = () => {
                             style={{ top: dropdownPositions[2].top, left: dropdownPositions[2].left }}>
                                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                                     <li>
-                                        <a href="/indices/1nivel" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
-                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> 1 Nivel </a>
+                                        <a href="/indices/primario" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
+                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Primario </a>
                                     </li>
 
                                     <li>
-                                        <a href="/indices/multinivel" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
-                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Multinivel </a>
+                                        <a href="/indices/secundario" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
+                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Secundario</a>
+                                    </li>
+
+                                    <li>
+                                        <button id="doubleDropdownButton3" data-dropdown-toggle="doubleDropdown3" data-dropdown-placement="right-start" type="button" 
+                                        className="flex items-center justify-between w-full px-4 py-2 text-white font-paragraph hover-bg-gray-600"
+                                        onClick={() => toggleDoubleDropdown(2)}> Multinivel
+                                            <svg className={`w-2.5 h-2.5 ml-2.5 transform ${doubleDropdownStates[2] ? "rotate-0" : "rotate-180"}`} aria-hidden="true" 
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                            </svg>
+                                        </button>
+
+                                        <div id="doubleDropdown3" className={`z-10 font-normal divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-700 
+                                        ${doubleDropdownStates[2] ? "max-h-96" : "max-h-0 hidden"}`}>
+                                            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
+                                                <li>
+                                                    <a href="/indices/multinivel/primario" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
+                                                    onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Primario </a>
+                                                </li>
+                                                                    
+                                                <li>
+                                                    <a href="/indices/multinivel/secundario" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
+                                                    onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Secundario </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
