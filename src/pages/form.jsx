@@ -1,6 +1,3 @@
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import React from 'react';
 import { IndexContext } from '../components/IndexContext';
 
@@ -38,7 +35,7 @@ const FormIndices = () => {
     };
 
     return (
-        <form id="form" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
+        <form id="form" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title animate-fade-down animate-once animate-ease-out animate-duration-[2500]">
             <div id="form-numRegistros" className="flex justify-between items-center mb-4">
                 <label htmlFor="numRegistros" className="font-medium"> Cantidad registros </label>
                 <input type="number" name="numRegistros" id="numRegistros" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} value={numRegistros}

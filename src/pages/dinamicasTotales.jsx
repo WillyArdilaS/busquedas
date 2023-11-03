@@ -38,7 +38,7 @@ const DinamicasRender = ({type}) => {
   }
 
   return (
-    <main className='flex justify-between w-11/12 my-12 mx-auto'>
+    <main className='flex justify-between w-11/12 my-12 mx-auto animate-fade-down animate-once animate-ease-out animate-duration-[2500]'>
       <section className='flex flex-col items-center'>
         <form id="form" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
           <div id="form-digitos" className="flex justify-between items-center mb-4">

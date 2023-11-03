@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
 
 function DinamicasParciales(props) {
     const [estructura, setEstructura] = useState([]);
@@ -308,7 +307,7 @@ function DinamicasParciales(props) {
         }
 
         return (
-            <div className='flex justify-between'>
+            <div className='flex justify-between animate-fade-down animate-once animate-ease-out animate-duration-[2500]'>
                 <div className='flex flex-col'>
                     <form id="form" className="px-4 py-6 bg-white rounded-lg shadow-md font-title">
                         <div id="form-key" className="flex justify-between items-center mb-4">

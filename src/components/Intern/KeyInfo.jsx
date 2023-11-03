@@ -4,7 +4,8 @@ const KeyInfo = () => {
     const {key, name, lastName, position, deleteData} = useArrayContext();
 
     return (
-        <article id="keyInfo" className="flex flex-col mt-12 px-4 py-6 bg-white rounded-lg shadow-md font-title">
+        <article id="keyInfo" className="flex flex-col mt-12 px-4 py-6 bg-white rounded-lg shadow-md font-title animate-fade-down animate-once animate-ease-out 
+        animate-duration-[2500]">
             <div id="keyInfo-position" className="mb-2 font-medium"> Posición: <span className="ml-2 font-normal"> {position} </span> </div>
             <div id="keyInfo-key" className="mb-2 font-medium"> Clave: <span className="ml-2 font-normal"> {key} </span> </div>
             <div id="keyInfo-name" className="mb-2 font-medium"> Nombre: <span className="ml-2 font-normal"> {name} </span> </div>

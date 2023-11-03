@@ -13,7 +13,8 @@ const CollisionMenu = ({collisionSelected, setCollisionSelected}) => {
     }
 
     return (
-        <form id="collisionForm" className="flex flex-col px-4 py-6 mt-12 bg-white rounded-lg shadow-md font-title">
+        <form id="collisionForm" className="flex flex-col px-4 py-6 mt-12 bg-white rounded-lg shadow-md font-title animate-fade-down animate-once animate-ease-out 
+        animate-duration-[2500]">
             <div id="collisionForm-collision" className="flex flex-col justify-between items-center mb-4">
                 <label htmlFor="collision" className="font-medium mb-2"> Solución de colisiones </label>
                 <select name="collision" id="collision" className="w-3/4 text-sm" value={collision} disabled={collisionSelected} 

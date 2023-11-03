@@ -12,7 +12,7 @@ function Steps({ opcionIndice }) {
     <>
       <Xwrapper>
         <div>
-          <div className='flex justify-between'>
+          <div className='flex justify-between animate-fade-down animate-once animate-ease-out animate-duration-[2500]'>
             <div>
               {opcionIndice === '1' && (
                 <>

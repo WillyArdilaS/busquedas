@@ -16,7 +16,7 @@ const Array = () => {
     }, [arraySize]);
 
     return (
-        <table id="array" className="bg-white shadow-md font-title text-center">
+        <table id="array" className="bg-white shadow-md font-title text-center animate-fade-down animate-once animate-ease-out animate-duration-[2500]">
             <thead>
                 <tr>
                     <th className="px-10 py-2 border-x-2"> Posición </th> 

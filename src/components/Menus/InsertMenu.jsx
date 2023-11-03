@@ -46,7 +46,7 @@ const InsertMenu = ({collisionSelected, type}) => {
     }, [isSorting]);
 
     return (
-        <form id="insertForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
+        <form id="insertForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title animate-fade-down animate-once animate-ease-out animate-duration-[2500]">
             <div id="insertForm-key" className="flex justify-between items-center mb-4">
                 <label htmlFor="key" className="font-medium"> Clave </label>
                 <input type="number" name="key" id="key" className="w-3/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={0} value={key}

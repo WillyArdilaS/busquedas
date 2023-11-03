@@ -31,7 +31,7 @@ const SearchMenu = ({showInfo, setShowInfo, type}) => {
 
     return (
         <>
-            <form id="searchForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
+            <form id="searchForm" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title animate-fade-down animate-once animate-ease-out animate-duration-[2500]">
                 <div id="searchForm-key" className="flex justify-between items-center mb-4">
                     <label htmlFor="searchKey" className="font-medium"> Clave </label>
                     <input type="number" name="searchKey" id="searchKey" className="w-3/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} value={key}

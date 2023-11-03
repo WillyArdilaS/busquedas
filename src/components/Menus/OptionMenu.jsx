@@ -43,7 +43,7 @@ const OptionMenu = ({setArrayCreated, setInsertOption, setSearchOption, setShowI
     }
 
     return (
-        <article id="menu" className="flex flex-col items-center mt-12 font-title">
+        <article id="menu" className="flex flex-col items-center mt-12 font-title animate-fade-down animate-once animate-ease-out animate-duration-[2500]">
             <input type="button" id="menu-insertKeys" value="Insertar claves" className="w-3/4 py-3 mb-4 rounded-lg bg-gray-900 shadow-lg text-white text-sm font-semibold 
             font-title hover:cursor-pointer hover:bg-gray-800 hover:scale-105" onClick={insertKeys}/>
                     
