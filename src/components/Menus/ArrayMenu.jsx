@@ -5,8 +5,6 @@ const ArrayMenu = ({arrayCreated, setArrayCreated}) => {
 
     const handleCreateArray = () => {
         setArrayCreated(true);
-        setArraySize(arraySize);
-        setArrayDigits(arrayDigits);
         alert(`Arreglo de tamaño ${arraySize} y con ${arrayDigits} dígitos creado`);
     }
 

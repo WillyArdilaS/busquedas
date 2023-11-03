@@ -3,25 +3,21 @@ import Table from 'react-bootstrap/Table';
 
 function DinamicasParciales(props) {
     const [estructura, setEstructura] = useState([]);
-    const [cubetas, setCubetas] = useState(props.cubetas);
-    const [registros, setRegistros] = useState(props.registros);
     const [valorInput, setValorInput] = useState('');
     const [matrizTemp, setMatrizTemp] = useState([]);
     const [matrizTempE, setMatrizTempE] = useState([]);
     const [keyM, setKeyM] = useState('');
-    const [mensajeError, setMensajeError] = useState('');
 
     useEffect(() => {
-        
-        setEstructura(Array.from({ length: cubetas }, () => Array.from({ length: registros }, () => -1)));
-    }, [registros]);
+        setEstructura(Array.from({ length: props.cubetas }, () => Array.from({ length: props.registros }, () => -1)));
+    }, [props.registros]);
 
     useEffect(() => {
         
         if(matrizTemp.length > 0){
             // Se transforma nuevamente en la original
-            for (let i = 0; i < cubetas; i++) {
-                for (let j = 0; j < registros; j++) {
+            for (let i = 0; i < props.cubetas; i++) {
+                for (let j = 0; j < props.registros; j++) {
                     if (matrizTemp[i] && matrizTemp[i][j] !== -1) {
                         const key = matrizTemp[i][j];
                         const insercion = insert(key);
@@ -35,21 +31,21 @@ function DinamicasParciales(props) {
             const key = keyM;
             switch (props.hash) {
                 case 1:
-                    cubeta = hashMod(key, cubetas);
+                    cubeta = hashMod(key, props.cubetas);
                     break;
                 case 2:
-                    cubeta = hashCuadrado(key, cubetas);
+                    cubeta = hashCuadrado(key, props.cubetas);
                     break;
                 case 3:
-                    cubeta = hashTrunc(key, cubetas);
+                    cubeta = hashTrunc(key, props.cubetas);
                     break;
                 case 4:
-                    cubeta = hashPleg(key, cubetas);
+                    cubeta = hashPleg(key, props.cubetas);
                     break;
             }
 
             let insertado = false;
-            for (let i = 0; i < registros; i++) {
+            for (let i = 0; i < props.registros; i++) {
                 if (estructura[cubeta][i] === -1) {
                     estructura[cubeta][i] = key;
                     insertado = true;
@@ -64,8 +60,8 @@ function DinamicasParciales(props) {
 
     useEffect(() => {
         if(matrizTempE.length > 0){
-            for (let i = 0; i < (cubetas)+Math.floor(cubetas/2); i++) {
-                for (let j = 0; j < registros; j++) {
+            for (let i = 0; i < (props.cubetas)+Math.floor(props.cubetas/2); i++) {
+                for (let j = 0; j < props.registros; j++) {
                     if (matrizTempE[i] && matrizTempE[i][j] !== -1) {
                         const insercion = insert(matrizTempE[i][j]);
                         if (!insercion && !matrizLlena()) {
@@ -104,34 +100,34 @@ function DinamicasParciales(props) {
 
     const verificarDensidadReduccion = () => {
         let ocupados = 0;
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (estructura[i][j] !== -1) {
                     ocupados++;
                 }
             }
         }
-        const densidadActual = (ocupados * 100) / (cubetas * registros);
+        const densidadActual = (ocupados * 100) / (props.cubetas * props.registros);
         return densidadActual <= props.densidadReduccion;
     };
 
     const verificarDensidadExpansion = () => {
         let ocupados = 0;
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (estructura[i][j] !== -1) {
                     ocupados++;
                 }
             }
         }
-        const densidadActual = (ocupados * 100) / (cubetas * registros);
+        const densidadActual = (ocupados * 100) / (props.cubetas * props.registros);
         return densidadActual >= props.densidadOcupacion;
     };
 
     const matrizLlena = () => {
         let lleno = true;
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (estructura[i][j] === -1) {
                     lleno = false;
                 }
@@ -144,8 +140,8 @@ function DinamicasParciales(props) {
         const matrizTemp_int = [...estructura.map((cubeta) => cubeta.slice())];
     
         // Duplica la matriz en la temporal
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (matrizTemp_int[i][j] !== -1) {
                     matrizTemp_int[i][j] = estructura[i][j];
                 }
@@ -153,9 +149,9 @@ function DinamicasParciales(props) {
         }
     
         // Actualiza la cantidad de cubetas después de expandir
-        const newCubetas = cubetas + Math.floor(cubetas/2);
-        setCubetas(newCubetas);
-        setEstructura(Array.from({ length: newCubetas }, () => Array.from({ length: registros }, () => -1)));
+        const newCubetas = props.cubetas + Math.floor(props.cubetas/2);
+        props.setCubetas(newCubetas);
+        setEstructura(Array.from({ length: newCubetas }, () => Array.from({ length: props.registros }, () => -1)));
         setMatrizTemp(matrizTemp_int);
         
     }
@@ -165,8 +161,8 @@ function DinamicasParciales(props) {
         const matrizETemp = [...estructura.map((cubeta) => cubeta.slice())];
 
         // Duplica la matriz en la temporal
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (matrizETemp[i][j] !== -1) {
                     matrizETemp[i][j] = estructura[i][j];
                 }
@@ -175,16 +171,16 @@ function DinamicasParciales(props) {
 
         
         // Se transforma nuevamente en la original
-        const newCubetas = cubetas - Math.floor((cubetas-1)/2);
-        setCubetas(newCubetas);
-        setEstructura(Array.from({ length: newCubetas }, () => Array.from({ length: registros }, () => -1)));
+        const newCubetas = props.cubetas - Math.floor((props.cubetas-1)/2);
+        props.setCubetas(newCubetas);
+        setEstructura(Array.from({ length: newCubetas }, () => Array.from({ length: props.registros }, () => -1)));
         setMatrizTempE(matrizETemp)
         
     };
 
     const search = (key) => {
-        for (let i = 0; i < cubetas; i++) {
-            for (let j = 0; j < registros; j++) {
+        for (let i = 0; i < props.cubetas; i++) {
+            for (let j = 0; j < props.registros; j++) {
                 if (estructura[i][j] === key) {
                     return true; // Elemento encontrado
                 }
@@ -197,21 +193,21 @@ function DinamicasParciales(props) {
         let cubeta;
         switch (props.hash) {
             case 1:
-                cubeta = hashMod(key, cubetas);
+                cubeta = hashMod(key, props.cubetas);
                 break;
             case 2:
-                cubeta = hashCuadrado(key, cubetas);
+                cubeta = hashCuadrado(key, props.cubetas);
                 break;
             case 3:
-                cubeta = hashTrunc(key, cubetas);
+                cubeta = hashTrunc(key, props.cubetas);
                 break;
             case 4:
-                cubeta = hashPleg(key, cubetas);
+                cubeta = hashPleg(key, props.cubetas);
                 break;
         }
 
         let eliminado = false;
-        for (let i = 0; i < registros; i++) {
+        for (let i = 0; i < props.registros; i++) {
             if (estructura[cubeta][i] === key) {
                 estructura[cubeta][i] = -1;
                 eliminado = true;
@@ -234,7 +230,7 @@ function DinamicasParciales(props) {
             // Verificar si la clave ya está repetida
             repetido = search(key);
             if (repetido) {
-                setMensajeError('Esta clave ya fue insertada');
+                alert('Esta clave ya fue insertada');
                 return false;
             }
         } while (repetido);
@@ -246,21 +242,21 @@ function DinamicasParciales(props) {
         let cubeta;
         switch (props.hash) {
             case 1:
-                cubeta = hashMod(key, cubetas);
+                cubeta = hashMod(key, props.cubetas);
                 break;
             case 2:
-                cubeta = hashCuadrado(key, cubetas);
+                cubeta = hashCuadrado(key, props.cubetas);
                 break;
             case 3:
-                cubeta = hashTrunc(key, cubetas);
+                cubeta = hashTrunc(key, props.cubetas);
                 break;
             case 4:
-                cubeta = hashPleg(key, cubetas);
+                cubeta = hashPleg(key, props.cubetas);
                 break;
         }
 
         let insertado = false;
-        for (let i = 0; i < registros; i++) {
+        for (let i = 0; i < props.registros; i++) {
             if (estructura[cubeta][i] === -1) {
                 estructura[cubeta][i] = key;
                 insertado = true;
@@ -279,16 +275,15 @@ function DinamicasParciales(props) {
     
     const handleInsert = () => {
         const valor = parseInt(valorInput);
-        setMensajeError("");
+
         if (contarDigitos(valor) !== props.digitos) {
-            setMensajeError("Esta clave no tiene la cantidad de digitos correcta");
+            alert(`Las claves deben tener ${props.digitos} dígitos`);
         }else{
-            setMensajeError("");
             if (!isNaN(valor)) {
                 insert(valor);
                 setValorInput(''); // Limpiar el input
             } else {
-                setMensajeError('Por favor, ingresa un valor numérico válido.');
+                alert('Por favor, ingresa una clave numérica válida');
             }
         }
     };
@@ -300,10 +295,10 @@ function DinamicasParciales(props) {
             if (eliminar(valor)) {
                 setValorInput(''); // Limpiar el input
             } else {
-                alert(`El valor ${valor} no se encontró en la estructura.`);
+                alert(`La clave ${valor} no se encontró en la estructura.`);
             }
         } else {
-            alert('Por favor, ingresa un valor numérico válido.');
+            alert('Por favor, ingresa una clave numérica válida');
         }
     };
 
@@ -313,45 +308,55 @@ function DinamicasParciales(props) {
         }
 
         return (
-            <div>
-                <Table>
-                    <thead>
+            <div className='flex justify-between'>
+                <div className='flex flex-col'>
+                    <form id="form" className="px-4 py-6 bg-white rounded-lg shadow-md font-title">
+                        <div id="form-key" className="flex justify-between items-center mb-4">
+                            <label htmlFor="key" className="font-medium"> Clave </label>
+                            <input type="number" name="key" id="key" className="w-3/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={0} value={valorInput}
+                            onChange={(e) => setValorInput(e.target.value)} required/>
+                        </div>
+
+                        <section id="form-button" className="flex justify-center mt-8">
+                            <input type="button" id="button-insertKey" value="Insertar clave" className={`w-3/4 py-3 rounded-lg shadow-lg text-white text-sm font-semibold font-title 
+                            bg-gray-900 hover:bg-gray-800 hover:cursor-pointer hover:scale-105`} onClick={handleInsert} />
+                        </section>
+                        
+                        <section id="form-button" className="flex justify-center mt-4">
+                            <input type="button" id="button-deleteKey" value="Eliminar clave" className={`w-3/4 py-3 rounded-lg shadow-lg text-white text-sm font-semibold font-title 
+                            bg-red-900 hover:bg-red-800 hover:cursor-pointer hover:scale-105`} onClick={handleDelete} />
+                        </section>
+                    </form>
+
+                </div>
+
+                <table className='w-2/3'>
+                    <thead className='font-title font-semibold'>
                         <tr>
-                            <th>Cubeta</th>
-                            {Array.from({ length: registros }, (_, j) => (
-                                <th key={j}>Registro {j}</th>
+                            <th></th>
+                            {Array.from({ length: props.registros }, (_, j) => (
+                                <th key={j} className='px-2 py-2 border-x-2'>Registro {j}</th>
                             ))}
                         </tr>
                     </thead>
-                    <tbody>
+
+                    <tbody className='font-title font-semibold'>
                         {estructura.map((cubeta, i) => (
                             <tr key={i}>
-                                <td>Cubeta {i}</td>
+                                <td className='px-2 py-2 border-x-2 border-y-2'>Cubeta {i}</td>
                                 {cubeta.map((valor, j) => (
-                                    <td key={j}>{valor !== -1 ? valor : ''}</td>
+                                    <td key={j} className='px-2 py-2 border-x-2 border-y-2'>{valor !== -1 ? valor : ''}</td>
                                 ))}
                             </tr>
                         ))}
                     </tbody>
-                </Table>
-
-                <input
-                    type="number"
-                    placeholder="Ingresar valor"
-                    value={valorInput}
-                    onChange={(e) => setValorInput(e.target.value)}
-                />
-                <button onClick={handleInsert}>Insertar</button>
-                <button onClick={handleDelete}>Eliminar</button>
+                </table>
             </div>
         );
     }
 
     return (
-        <div>
-            {renderizarEstructura()}
-            <p style={{color: "red"}}>{mensajeError}</p>
-        </div>
+        renderizarEstructura()
     );
 }
 
