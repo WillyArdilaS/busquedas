@@ -55,7 +55,7 @@ const FormIndices = () => {
             </div>
             
             <div id="form-tamBloque" className="flex justify-between items-center mb-4">
-                <label htmlFor="tamBloque" className="font-medium"> Longitud índice </label>
+                <label htmlFor="tamBloque" className="font-medium"> Tamaño bloque </label>
                 <input type="number" name="tamBloque" id="tamBloque" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} 
                 value={tamBloque} placeholder='8192' onChange={(e) => setTamBloque(e.target.value)} required/>
             </div>
