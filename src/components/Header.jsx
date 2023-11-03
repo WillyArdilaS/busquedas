@@ -129,17 +129,7 @@ const Header = () => {
                             <div id="dropdownNavbar2" className={`z-10 font-normal mr-3 rounded-lg shadow w-44 bg-gray-700 divide-gray-600 transition-max-height ease-in-out 
                             duration-300 absolute top-16 right-0 ${dropdownStates[1] ? "max-h-96" : "max-h-0 hidden"}`}  
                             style={{ top: dropdownPositions[1].top, left: dropdownPositions[1].left }}>
-                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                                    <li>
-                                        <a href="/externa/secuencial" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
-                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Secuencial </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/externa/binaria" className="font-paragraph text-white block px-4 py-2 hover:bg-gray-600" 
-                                        onClick={() => {setDropdownStates([false, false, false]); setDoubleDropdownStates([false, false, false])}}> Binaria </a>
-                                    </li>
-
+                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">     
                                     <li>
                                         <button id="doubleDropdownButton2" data-dropdown-toggle="doubleDropdown2" data-dropdown-placement="right-start" type="button" 
                                         className="flex items-center justify-between w-full px-4 py-2 text-white font-paragraph hover-bg-gray-600" 

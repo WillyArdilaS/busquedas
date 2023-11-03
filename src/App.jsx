@@ -28,10 +28,6 @@ function App() {
         </Route>
         
         <Route path="/externa">
-          <Route index element={<Intern />} />
-          <Route path="secuencial" element={<Intern type="sequential" />} />
-          <Route path="binaria" element={<Intern type="binary" />} />
-
           <Route path="expansionTotal">
             <Route path="mod" element={<DinamicasRender type="1" />} />
             <Route path="cuadrado" element={<DinamicasRender type="2" />} />
