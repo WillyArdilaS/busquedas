@@ -1,4 +1,4 @@
-import { useArrayContext } from "../context/ArrayContext";
+import { useArrayContext } from "../../context/ArrayContext";
 
 const KeyInfo = () => {
     const {key, name, lastName, position, deleteData} = useArrayContext();

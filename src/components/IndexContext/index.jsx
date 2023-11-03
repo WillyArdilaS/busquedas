@@ -7,19 +7,14 @@ const IndexContext = createContext();
 
 function UserProvider({ children }) {
 
-  const [numRegistros, setNumRegistros] = useState(0);
-  const [longitudRegistros, setLongitudRegistro] = useState(0);
-  const [longitudIndice, setLongitudIndice] = useState(0);
-  const [tamBloque, setTamBloque] = useState(0);
-  const [openModal, setOpenModal] = React.useState(false);
-  const [formValido, setFormValido] = React.useState(false);
-  const [formError, setFormError] = React.useState("");
+  const [numRegistros, setNumRegistros] = useState();
+  const [longitudRegistros, setLongitudRegistro] = useState();
+  const [longitudIndice, setLongitudIndice] = useState();
+  const [tamBloque, setTamBloque] = useState();
 
   const {
     item: registros,
     saveItem: saveregistros,
-    loading,
-    error,
   } = useLocalStorage('Registros', []);
 
   const addStep = () => {
@@ -42,12 +37,6 @@ function UserProvider({ children }) {
       setLongitudRegistro,
       tamBloque,
       setTamBloque,
-      openModal,
-      setOpenModal,
-      formValido,
-      setFormValido,
-      formError,
-      setFormError,
       longitudIndice,
       setLongitudIndice,
       addStep,

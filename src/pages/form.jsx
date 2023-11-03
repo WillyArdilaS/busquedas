@@ -15,97 +15,59 @@ const FormIndices = () => {
         setTamBloque,
         longitudIndice,
         setLongitudIndice,
-        setOpenModal,
-        setFormValido,
-        setFormError,
         addStep
     } = React.useContext(IndexContext);
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        if (numRegistros === 0) {
-            setFormError("Debe indicar la cantidad de registros");
-            setFormValido(false);
+    const onSubmit = () => {
+        if (numRegistros === 0 || numRegistros === undefined) {
+            alert("Debe indicar la cantidad de registros");
         }
-        else if (longitudRegistros === 0) {
-            setFormError("Debe indicar la longitud de cada registro");
-            setFormValido(false);
+        else if (longitudRegistros === 0 || longitudRegistros === undefined) {
+            alert("Debe indicar la longitud de cada registro");
         }
-        else if (tamBloque === 0) {
-            setFormError("Debe indicar el tamaño del bloque");
-            setFormValido(false);
+        else if (tamBloque === 0 || tamBloque === undefined) {
+            alert("Debe indicar el tamaño del bloque");
         }
-        else if (longitudIndice === 0) {
-            setFormError("Debe indicar la longitud de cada indice");
-            setFormValido(false);
+        else if (longitudIndice === 0 || longitudIndice === undefined) {
+            alert("Debe indicar la longitud de cada indice");
         }
         else {
-            setFormError("Perfecto, ve a la pestaña 'Ver indices' para ver el paso a paso");
-            setFormValido(true);
-        }
-        console.log(
-            {
-                numRegistros,
-                longitudRegistros,
-                tamBloque,
-                longitudIndice
-            }
-        );
-        setOpenModal(true);
-        addStep();
+            alert("Estructura creada");
+            addStep();
+        }  
     };
-
-    const onChange = (event) => {
-        if (event.target.id === "floatingInputRegistros") {
-            setNumRegistros(event.target.value);
-        }
-        if (event.target.id === "floatingInputLongitud") {
-            setLongitudRegistro(event.target.value);
-        }
-        if (event.target.id === "floatingInputLongitudIndice") {
-            setLongitudIndice(event.target.value);
-        }
-        if (event.target.id === "floatingInputTamanio") {
-            setTamBloque(event.target.value);
-        }
-    };
-
-
 
     return (
-        <form onChange={onChange} onSubmit={onSubmit}>
-            <FloatingLabel
-                controlId="floatingInputRegistros"
-                label="Escriba la cantidad de registros"
-                className="mb-3"
-            >
-                <Form.Control type="number" placeholder="250000" />
-            </FloatingLabel>
-            <FloatingLabel
-                controlId="floatingInputLongitud"
-                label="Escriba la longitud de cada registro en bytes"
-                className="mb-3"
-            >
-                <Form.Control type="number" placeholder="150" />
-            </FloatingLabel>
-            <FloatingLabel
-                controlId="floatingInputLongitudIndice"
-                label="Escriba la longitud de cada indice en bytes"
-                className="mb-3"
-            >
-                <Form.Control type="number" placeholder="150" />
-            </FloatingLabel>
-            <FloatingLabel
-                controlId="floatingInputTamanio"
-                label="Escriba el tamaño del bloque en bytes"
-                className="mb-3"
-            >
-                <Form.Control type="number" placeholder="8192" />
-            </FloatingLabel>
-            <Button type='submit' variant="outline-primary">Enviar</Button>
+        <form id="form" className="flex flex-col px-4 py-6 bg-white rounded-lg shadow-md font-title">
+            <div id="form-numRegistros" className="flex justify-between items-center mb-4">
+                <label htmlFor="numRegistros" className="font-medium"> Cantidad registros </label>
+                <input type="number" name="numRegistros" id="numRegistros" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} value={numRegistros}
+                placeholder='250000' onChange={(e) => setNumRegistros(e.target.value)} required/>
+            </div>
+                        
+            <div id="form-longitudRegistros" className="flex justify-between items-center mb-4">
+                <label htmlFor="longitudRegistros" className="font-medium"> Longitud registros </label>
+                <input type="number" name="longitudRegistros" id="longitudRegistros" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} 
+                value={longitudRegistros} placeholder='150' onChange={(e) => setLongitudRegistro(e.target.value)} required/>
+            </div>
+            
+            <div id="form-longitudIndice" className="flex justify-between items-center mb-4">
+                <label htmlFor="longitudIndice" className="font-medium"> Longitud índice </label>
+                <input type="number" name="longitudIndice" id="longitudIndice" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} 
+                value={longitudIndice} placeholder='150' onChange={(e) => setLongitudIndice(e.target.value)} required/>
+            </div>
+            
+            <div id="form-tamBloque" className="flex justify-between items-center mb-4">
+                <label htmlFor="tamBloque" className="font-medium"> Longitud índice </label>
+                <input type="number" name="tamBloque" id="tamBloque" className="w-2/5 px-2 py-1 rounded-sm shadow-md text-sm font-normal" min={1} 
+                value={tamBloque} placeholder='8192' onChange={(e) => setTamBloque(e.target.value)} required/>
+            </div>
+
+            <section id="form-button" className="flex justify-center mt-2">
+                <input type="button" id="button-createStructure" value="Crear estructura" className={`w-3/4 py-3 rounded-lg text-white text-sm font-semibold font-title 
+                bg-gray-900 hover:bg-gray-800 hover:cursor-pointer hover:scale-105`} onClick={onSubmit} />
+            </section>
         </form>
-
-
     );
 };
 

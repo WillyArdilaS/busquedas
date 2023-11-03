@@ -1,5 +1,5 @@
 import { useArrayContext } from "../../context/ArrayContext";
-import KeyInfo from '../KeyInfo'
+import KeyInfo from '../Intern/KeyInfo'
 
 const SearchMenu = ({showInfo, setShowInfo, type}) => {
     const {key, setKey, searchDataSeq, searchDataBin, searchDataHash} = useArrayContext();

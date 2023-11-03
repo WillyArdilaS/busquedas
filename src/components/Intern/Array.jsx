@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useArrayContext } from "../context/ArrayContext";
+import { useArrayContext } from "../../context/ArrayContext";
 
 const Array = () => {
     const {arraySize, data, setData} = useArrayContext();
@@ -16,11 +16,11 @@ const Array = () => {
     }, [arraySize]);
 
     return (
-        <table id="array" className="bg-white r shadow-md font-title text-center">
+        <table id="array" className="bg-white shadow-md font-title text-center">
             <thead>
                 <tr>
-                    <th className="px-10 py-2  border-x-2"> Posición </th> 
-                    <th className="px-10 py-2  border-x-2"> Clave </th> 
+                    <th className="px-10 py-2 border-x-2"> Posición </th> 
+                    <th className="px-10 py-2 border-x-2"> Clave </th> 
                     <th className="px-10 py-2 border-x-2"> Nombre </th> 
                     <th className="px-10 py-2 border-x-2"> Apellido </th> 
                 </tr>

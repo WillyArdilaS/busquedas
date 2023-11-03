@@ -1,9 +1,5 @@
-import Table from 'react-bootstrap/Table';
-import { IndexContext } from '../IndexContext';
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { IndexContext } from '../IndexContext';
 import './EstructuraRegistros.css';
 
 function EstructuraRegistrosSecundario({ ids }) {
@@ -25,36 +21,35 @@ function EstructuraRegistrosSecundario({ ids }) {
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
-            <Table bordered striped="columns">
-              <thead>
-                <tr>
-                  <th># Registro</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id={id1}>1</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td >3</td>
-                </tr>
-                <tr>
-                  <td  className='dot-container'><div className='dots'></div></td>
-                </tr>
-                <tr>
-                  <td id={id2}>{numRegistros}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+      <table className="bg-white shadow-md font-title text-center w-1/2">
+          <thead>
+            <tr className='border-y-2'>
+              <th className="px-10 py-2 border-x-2"> # Registro </th> 
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr className='border-y-2'>
+              <td id={id1} className="px-10 py-2 border-x-2">1</td>
+            </tr>
+
+            <tr className='border-y-2'>
+              <td className="px-10 py-2 border-x-2">2</td>
+            </tr>
+
+            <tr className='border-y-2'>
+              <td className="px-10 py-2 border-x-2">3</td>
+            </tr>
+
+            <tr className='border-y-2'>
+              <td className="flex flex-col items-center py-2 border-x-2 dot-container"><div className='dots'></div></td>
+            </tr>
+
+            <tr>
+              <td id={id2} className="px-10 py-2 border-x-2">{numRegistros}</td>
+            </tr>
+          </tbody>
+        </table>
     </>
   );
 }

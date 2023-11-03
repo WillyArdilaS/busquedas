@@ -5,7 +5,7 @@ import OptionMenu from '../components/Menus/OptionMenu'
 import InsertMenu from '../components/Menus/InsertMenu'
 import SearchMenu from '../components/Menus/SearchMenu'
 import CollisionMenu from '../components/Menus/CollisionMenu'
-import Array from '../components/Array'
+import Array from '../components/Intern/Array'
 
 const Intern = ({type}) => {
   const [arrayCreated, setArrayCreated] = useState(false);
